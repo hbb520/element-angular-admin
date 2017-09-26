@@ -1,0 +1,37 @@
+/*视图框*/
+.router {
+  overflow-x: auto;
+  min-width: 1000px;
+  min-height: 500px;
+}
+
+.logo {
+  height: 64px;
+  background: #1976d2;
+}
+
+.ant-layout-sider-collapsed .nav-text {
+  display: none;
+}
+
+.ant-layout-sider-collapsed .ant-menu-submenu-title:after {
+  display: none;
+}
+
+.ant-layout-sider-collapsed .anticon {
+  font-size: 16px;
+  margin-left: 8px;
+}
+
+.trigger {
+  font-size: 18px;
+  line-height: 64px;
+  padding: 0 16px;
+  cursor: pointer;
+  transition: color .3s;
+  color: #ffffff;
+}
+
+.trigger:hover {
+  color: #ffffff;
+}
