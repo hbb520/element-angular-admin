@@ -1,3 +1,50 @@
+<div class="header">
+  <div style="float: left;margin-left:-15px;">
+    <img src="./assets/images/ele.svg" height="60px">
+    <img src="./assets/images/ng.svg" height="60px">
+  </div>
+  <div style="margin-right: 40px">
+    <ul>
+      <li class="header-li">
+        <a class="header-item" href="https://github.com/hbb520/angular4-primeng-admin" target="_blank">
+          <i class="fa fa-github"></i>
+
+        </a>
+      </li>
+      <li class="header-li">
+        <a class="header-item">
+          <i class="fa fa-commenting"></i>
+
+        </a>
+      </li>
+      <li class="header-li">
+        <a class="header-item" (click)="loginOut()">
+          <i class="fa fa-sign-out"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+<!--<div class="menu">-->
+<el-menu model="2" class="menu" default-active="1" theme="dark">
+  <el-submenu index="1">
+    <ng-template #title>
+      <i class="el-icon-message"></i>数据
+    </ng-template>
+    <el-menu-item index="1-1" routerLink="data-table">综合表格</el-menu-item>
+    <el-menu-item index="1-2" routerLink="form">表单</el-menu-item>
+  </el-submenu>
+  <el-submenu index="2">
+    <ng-template #title>
+      <i class="el-icon-message"></i>导航一
+    </ng-template>
+    <el-menu-item index="2-1">选项1</el-menu-item>
+    <el-menu-item index="2-2">选项2</el-menu-item>
+  </el-submenu>
+</el-menu>
+<!--</div>-->
 
 <div class="router">
   <router-outlet></router-outlet>

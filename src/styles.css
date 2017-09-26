@@ -1,1 +1,54 @@
 @import "~element-theme-default";
+img, a, p, body, html, select, div, label, option, ul, li, dl, dd, span, input, select, i, h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, SimSun, sans-serif;
+}
+
+body {
+  overflow: auto;
+  width: 100%;
+  -webkit-font-smoothing: antialiased;
+  color: #1f2f3d;
+  font-size: 14px;
+  height: 100%;
+}
+
+html {
+  height: 100%;
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+label {
+  cursor: inherit;
+  vertical-align: middle;
+}
+
+input,
+textarea,
+button {
+  outline: none;
+  resize: none;
+  font-family: "Microsoft Yahei";
+}
+
+.a-none:hover {
+  text-decoration: none;
+}
+
+.none {
+  display: none !important;
+}
+
+.block {
+  display: block !important;
+}

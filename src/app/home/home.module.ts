@@ -16,6 +16,7 @@ import { ElModule } from 'element-angular'
     ReactiveFormsModule,
     HttpModule,
     CommonModule,
+    ElModule,
     RouterModule.forChild(homeRoutes),
   ],
   exports: [],
