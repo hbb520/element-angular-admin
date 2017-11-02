@@ -27,14 +27,23 @@
 </div>
 
 
+
 <!--<div class="menu">-->
 <el-menu model="2" class="menu" default-active="1" theme="dark">
   <el-submenu index="1">
     <ng-template #title>
       <i class="el-icon-message"></i>数据
     </ng-template>
-    <el-menu-item index="1-1" routerLink="data-table">综合表格</el-menu-item>
-    <el-menu-item index="1-2" routerLink="form">表单</el-menu-item>
+    <a routerLink="data-table">
+      <el-menu-item index="1-1">
+        综合表格
+      </el-menu-item>
+    </a>
+    <a routerLink="form">
+      <el-menu-item index="1-2">
+        表单
+      </el-menu-item>
+    </a>
   </el-submenu>
   <el-submenu index="2">
     <ng-template #title>

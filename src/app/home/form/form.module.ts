@@ -4,6 +4,7 @@ import { RouterModule} from "@angular/router";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpModule} from "@angular/http";
 import { FormComponent} from './form.component';
+import {ElModule} from 'element-angular/release';
 
 
 
@@ -13,7 +14,7 @@ import { FormComponent} from './form.component';
     ReactiveFormsModule,
     HttpModule,
     CommonModule,
-
+    ElModule,
     RouterModule.forChild([
       { path:'',component:FormComponent}
     ])

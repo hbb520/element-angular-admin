@@ -1,7 +1,62 @@
-<div >
-  form
-</div>
+<el-breadcrumb separator="/">
+  <el-breadcrumb-item to="">首页</el-breadcrumb-item>
+  <el-breadcrumb-item to="">数据</el-breadcrumb-item>
+  <el-breadcrumb-item to="">表单</el-breadcrumb-item>
+</el-breadcrumb>
 
 
+<el-card class="box-card">
+  <form>
+    <div el-row >
+      <div el-col [span]="2">
+        <label >input</label>
+      </div>
+      <div el-col [span]="6">
+        <el-input placeholder="请输入内容">
+        </el-input>
+      </div>
+    </div>
+
+    <div style="margin: 20px 0;"></div>
+
+    <div el-row >
+      <div el-col [span]="2">
+        <label >textarea</label>
+      </div>
+      <div el-col [span]="6">
+        <el-input type="textarea"
+                  [autosize]="{ minRows: 2, maxRows: 4}"
+                  placeholder="自动调整高度 { minRows: 2, maxRows: 4 }"
+                  >
+        </el-input>
+      </div>
+    </div>
+
+    <div style="margin: 20px 0;"></div>
+
+    <div el-row >
+      <div el-col [span]="2">
+        <label >select</label>
+      </div>
+      <div el-col [span]="6">
+        <el-select  placeholder="请选择" (modelChange)="handle($event)">
+          <el-option *ngFor="let item of [{value: '选项1',label: '黄金糕' },
+      { value: '选项2', label: '双皮奶' },
+      { disabled: true, value: '选项3', label: '蚵仔煎' },
+      { value: '选项4', label: '龙须面' },
+      { value: '选项5', label: '北京烤鸭' }]"
+                     [label]="item.label"
+                     [value]="item.value">
+          </el-option>
+        </el-select>
+      </div>
+    </div>
+
+
+
+
+  </form>
+
+</el-card>
 
 

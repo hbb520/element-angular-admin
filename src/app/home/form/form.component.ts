@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {pageAnimation} from '../../common/public-data';
-import {DataTableService} from '../data-table/data-table.service';
+import {MyService} from '../../services/service';
 
 @Component({
   selector: 'app-data-table',
@@ -11,7 +11,7 @@ import {DataTableService} from '../data-table/data-table.service';
   ]
 })
 export class FormComponent implements OnInit {
-  constructor(private myService: DataTableService) {
+  constructor(private myService: MyService) {
 
   }
 
@@ -70,7 +70,6 @@ export class FormComponent implements OnInit {
   //   }
   //   this.get(this.gotoPage);
   // }
-
 
 
   /************************* 添加 ********************************/
@@ -257,7 +256,8 @@ export class FormComponent implements OnInit {
       this.city3Disabled = false;
     }
   }
-
-
+  handle($event){
+    console.log($event)
+  }
 
 }

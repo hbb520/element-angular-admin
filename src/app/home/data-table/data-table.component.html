@@ -1,9 +1,71 @@
-<div >
-  data
-  <el-button>Hello World</el-button>
+
+  <el-breadcrumb separator="/">
+    <el-breadcrumb-item to="">首页</el-breadcrumb-item>
+    <el-breadcrumb-item to="">数据</el-breadcrumb-item>
+    <el-breadcrumb-item to="">普通表格</el-breadcrumb-item>
+  </el-breadcrumb>
+<div class="search-box " el-row gutter="20">
+  <div el-col [span]="6">
+    <div el-row>
+      <label el-col [span]="5">关键字</label>
+      <div el-col [span]="15">
+        <el-input [(model)]="input" placeholder="请输入内容" id="keyW"></el-input>
+      </div>
+    </div>
+  </div>
+  <div el-col [span]="6">
+    <div el-row>
+      <label el-col [span]="4">日期</label>
+      <div el-col [span]="15">
+        <el-date-picker (modelChange)="handle($event)">
+        </el-date-picker>
+      </div>
+    </div>
+  </div>
+  <div el-col [span]="6">
+    <div el-row>
+      <label el-col [span]="4">品牌</label>
+      <div el-col [span]="15">
+        <el-select [(model)]="selectModel" placeholder="请选择" (modelChange)="handle($event)">
+          <el-option *ngFor="let item of data"
+                     [label]="item.name"
+                     [value]="item.id">
+          </el-option>
+        </el-select>
+      </div>
+    </div>
+  </div>
+  <div el-col [span]="6">
+    <el-button type="primary" icon="search">搜索</el-button>
+    <el-button type="text">清空搜索</el-button>
+  </div>
+
 </div>
 
+<div class="table-box">
+  <el-table [(model)]="data" [border]="true" (cell-click)="handle($event)">
+    <el-table-column model-key="id" label="id" width="140">
 
+    </el-table-column>
+    <el-table-column model-key="name" label="name" width="140">
 
+    </el-table-column>
+    <el-table-column model-key="createTime" label="createTime">
 
+    </el-table-column>
+    <el-table-column label="操作" width="200" >
+      <ng-template #slot let-scope="scope">
+        <el-button type="primary" size="small" (click)="handle(scope.rowData)">编辑</el-button>
+        <el-button type="danger" size="small" (click)="handle(scope.rowData)">编辑</el-button>
+      </ng-template>
+    </el-table-column>
+  </el-table>
 
+  <div class="pagination-box">
+    <el-pagination [total]="500"
+                   [layout]="['prev', 'pager', 'next', 'jumper']">
+    </el-pagination>
+
+  </div>
+
+</div>

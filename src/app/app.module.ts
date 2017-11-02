@@ -8,12 +8,10 @@ import {RouterModule} from '@angular/router';
 import {AppComponent} from './app.component';
 import {LoginComponent} from './login/login.component';
 import {appRoutes} from './app.routes';
-import {LoginService} from './login/login.service';
 import {NgProgressModule} from 'ngx-progressbar';
 import {Ajax} from './common/ajax';
-import {HomeService} from './home/home.service';
-import {DataTableService} from './home/data-table/data-table.service';
 import { ElModule } from 'element-angular'
+import {MyService} from './services/service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,9 +33,7 @@ import { ElModule } from 'element-angular'
   ],
   providers: [
     Ajax,
-    LoginService,
-    HomeService,
-    DataTableService
+    MyService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {NavigationEnd, NavigationStart, RouteConfigLoadEnd, RouteConfigLoadStart, Router} from '@angular/router';
-import {HomeService} from './home.service';
 import {pageAnimation} from '../common/public-data';
 
 
@@ -14,7 +13,7 @@ import {pageAnimation} from '../common/public-data';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private myService: HomeService, public router: Router) {
+  constructor( public router: Router) {
   };
 
   ngOnInit() {

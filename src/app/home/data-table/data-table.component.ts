@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {DataTableService} from './data-table.service';
 import {pageAnimation} from '../../common/public-data';
+import {MyService} from '../../services/service';
 
 @Component({
   selector: 'app-data-table',
@@ -11,21 +11,42 @@ import {pageAnimation} from '../../common/public-data';
   ]
 })
 export class DataTableComponent implements OnInit {
-  constructor(private myService: DataTableService) {
-
+  constructor(private  myService: MyService) {
   }
 
   ngOnInit() {
     this.getCitys();
+    this.get(1);
+    // setTimeout(() => {
+    //   this.data = [{
+    //     name: '水爷',
+    //     date: '2017-08-19',
+    //     address: '上海市普陀区金沙江路 1518 弄',
+    //   }, {
+    //     name: '水爷',
+    //     date: '2017-08-20',
+    //     address: '上海市普陀区金沙江路 1518 弄',
+    //   }, {
+    //     name: '水爷',
+    //     date: '2017-08-21',
+    //     address: '上海市普陀区金沙江路 1518 弄',
+    //   }, {
+    //     name: '水爷',
+    //     date: '2017-08-22',
+    //     address: '上海市普陀区金沙江路 1510 弄',
+    //   }];
+    // }, 2000);
   }
 
   /************************* 定义********************************/
   msgs: any[] = [];                                  //消息
   cars: any;                                             // get获取数据 {}
-  data: any[];                                           //数据数组
+  data: any[] = [];                                           //数据数组
   totalPages: number = 1;                                //获取总页数
   totalCount: number = 0;                                //总条目数
   gotoPage: number = 1;                                  //前往页数
+  input: string;
+  selectModel: string ;
 
   /************************* 获取数据 ********************************/
   get(pageNo) {
@@ -33,17 +54,21 @@ export class DataTableComponent implements OnInit {
       'pageNo': pageNo,
     };
     this.myService.get(params)
-      .then(cars => {
-          this.cars = cars;
-
-        }, error => console.log(error)
-      )
-      .then(
-        () => {
+      .then(res => {
+          this.cars = res;
           if (this.cars) {
             this.data = [];
-
-            this.data = this.cars.data;
+            let data = [];
+            for (let i = 0; i < this.cars.data.length; i++) {
+              data.push({
+                id: this.cars.data[i].id.toString(),
+                name: this.cars.data[i].name.toString(),
+                createTime: this.cars.data[i].createTime.toString()
+              });
+            }
+            this.data = data;
+            this.selectModel = '6';
+            console.log(this.data);
             if (this.data.length == 0) {
               this.data = [];
             }                                                                                   //没有数据时跳到第一页
@@ -52,7 +77,7 @@ export class DataTableComponent implements OnInit {
           } else {
             this.data = [];
           }
-        }
+        }, error => console.log(error)
       );
   }
 
@@ -70,7 +95,6 @@ export class DataTableComponent implements OnInit {
   //   }
   //   this.get(this.gotoPage);
   // }
-
 
 
   /************************* 添加 ********************************/
@@ -258,6 +282,8 @@ export class DataTableComponent implements OnInit {
     }
   }
 
-
+  handle(e:any) {
+    console.log(e);
+  }
 
 }

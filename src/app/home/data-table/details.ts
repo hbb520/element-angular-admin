@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {DataTableService} from './data-table.service';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({
@@ -9,7 +8,7 @@ import {ActivatedRoute} from '@angular/router';
   ]
 })
 export class Details implements OnInit {
-  constructor(private myService: DataTableService, private route: ActivatedRoute) {
+  constructor( private route: ActivatedRoute) {
 
     console.log(route);
 
