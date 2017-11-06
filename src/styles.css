@@ -1,4 +1,4 @@
-@import "~element-theme-default";
+@import "~element-angular/theme/index.css";
 
 img, a, p, body, html, select, div, label, option, ul, li, dl, dd, span, input, select, i, h1, h2, h3, h4, h5, h6 {
   margin: 0;
@@ -54,11 +54,25 @@ button {
   display: block !important;
 }
 
-
-.search-box{
-  padding: 20px 0 30px 0;
+.search-box {
+  padding: 0px 0 30px 0;
 }
-.pagination-box{
+
+.pagination-box {
   text-align: center;
   margin: 20px 0;
+}
+
+.breadcrumb-box {
+  padding: 0 0 20px 0;
+}
+
+.handle-box {
+  padding: 0 0 20px 0;
+}
+
+.width100 .el-date-editor.el-input,
+.width100 .el-date-editor.el-input__inner {
+  width: 100%;
+
 }

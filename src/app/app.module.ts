@@ -12,6 +12,7 @@ import {NgProgressModule} from 'ngx-progressbar';
 import {Ajax} from './common/ajax';
 import { ElModule } from 'element-angular'
 import {MyService} from './services/service';
+import {LoginService} from './login/login.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +34,8 @@ import {MyService} from './services/service';
   ],
   providers: [
     Ajax,
-    MyService
+    MyService,
+    LoginService
   ],
   bootstrap: [AppComponent]
 })

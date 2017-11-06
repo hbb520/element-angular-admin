@@ -1,15 +1,16 @@
-
+<div class="breadcrumb-box">
   <el-breadcrumb separator="/">
     <el-breadcrumb-item to="">首页</el-breadcrumb-item>
     <el-breadcrumb-item to="">数据</el-breadcrumb-item>
     <el-breadcrumb-item to="">普通表格</el-breadcrumb-item>
   </el-breadcrumb>
+</div>
 <div class="search-box " el-row gutter="20">
   <div el-col [span]="6">
     <div el-row>
       <label el-col [span]="5">关键字</label>
       <div el-col [span]="15">
-        <el-input [(model)]="input" placeholder="请输入内容" id="keyW"></el-input>
+        <el-input [(model)]="inputModel" placeholder="请输入内容" id="keyW"></el-input>
       </div>
     </div>
   </div>
@@ -17,7 +18,7 @@
     <div el-row>
       <label el-col [span]="4">日期</label>
       <div el-col [span]="15">
-        <el-date-picker (modelChange)="handle($event)">
+        <el-date-picker (modelChange)="handle($event)" [(model)]="datePpickerModel" [el-class]="'width100'">
         </el-date-picker>
       </div>
     </div>
@@ -26,7 +27,8 @@
     <div el-row>
       <label el-col [span]="4">品牌</label>
       <div el-col [span]="15">
-        <el-select [(model)]="selectModel" placeholder="请选择" (modelChange)="handle($event)">
+        <el-select [(model)]="selectModel" placeholder="请选择" (modelChange)="handle($event)" [el-class]="'width100'"
+                   [clearable]="true">
           <el-option *ngFor="let item of data"
                      [label]="item.name"
                      [value]="item.id">
@@ -36,9 +38,15 @@
     </div>
   </div>
   <div el-col [span]="6">
-    <el-button type="primary" icon="search">搜索</el-button>
-    <el-button type="text">清空搜索</el-button>
+    <el-button type="primary" icon="search" (click)="get(1)">搜索</el-button>
+    <el-button type="text" (click)="inputModel=null;datePpickerModel=null;selectModel=null">清空搜索</el-button>
   </div>
+
+</div>
+
+<div class="handle-box">
+  <el-button type="primary" (click)="dialogVisible=true">添加</el-button>
+
 
 </div>
 
@@ -47,25 +55,45 @@
     <el-table-column model-key="id" label="id" width="140">
 
     </el-table-column>
-    <el-table-column model-key="name" label="name" width="140">
+    <el-table-column model-key="name" label="名称" width="140">
 
     </el-table-column>
-    <el-table-column model-key="createTime" label="createTime">
+    <el-table-column model-key="createTime" label="创建时间">
 
     </el-table-column>
-    <el-table-column label="操作" width="200" >
-      <ng-template #slot let-scope="scope">
-        <el-button type="primary" size="small" (click)="handle(scope.rowData)">编辑</el-button>
-        <el-button type="danger" size="small" (click)="handle(scope.rowData)">编辑</el-button>
+    <el-table-column model-key="logo" label="logo">
+
+    </el-table-column>
+
+    <el-table-column model-key="logo" label="logo">
+      <ng-template #slot1 let-scope="scope">
+        {{scope.rowData.logo}}
       </ng-template>
     </el-table-column>
+    <el-table-column model-key="createTime" label="创建时间">
+      <ng-template #slot let-scope="scope">
+        {{scope.rowData.createTime}}
+      </ng-template>
+    </el-table-column>
+    <!--<el-table-column label="操作" width="200">-->
+    <!--<ng-template #slot let-scope="scope">-->
+    <!--<el-button type="primary" size="mini" icon="edit" (click)="handle(scope.rowData)"></el-button>-->
+    <!--<el-button type="danger" size="mini" icon="delete" (click)="handle(scope.rowData)"></el-button>-->
+    <!--</ng-template>-->
+    <!--</el-table-column>-->
   </el-table>
 
-  <div class="pagination-box">
-    <el-pagination [total]="500"
-                   [layout]="['prev', 'pager', 'next', 'jumper']">
-    </el-pagination>
-
-  </div>
 
 </div>
+<div class="pagination-box">
+  <el-pagination [total]="totalPages"
+                 [page-size]="1"
+                 [page-count]="totalPages"
+                 [layout]="['prev', 'pager', 'next', 'jumper']" (modelChange)="paginateChange($event)">
+  </el-pagination>
+
+</div>
+
+<el-dialog [title]="'新增'" [(visible)]="dialogVisible">
+  <span>我选择在夏威夷演讲。</span>
+</el-dialog>

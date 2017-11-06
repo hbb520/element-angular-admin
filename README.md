@@ -1,7 +1,7 @@
 
-一个基于 [element-angular](https://element-angular.faas.ele.me/guide/install)【ANT DESIGN】 的企业后台模板。
+一个基于 [element-angular](https://element-angular.faas.ele.me/data/table) 的企业后台模板。
 
-[DEMO链接](http://www.baidu.com)
+[DEMO链接](暂无)
 
 ## 快速入门
 
@@ -16,7 +16,7 @@
  npm install --global @angular/cli
 
 # 克隆项目 
-git clone git@github.com:hbb520/ng-zorro-antd-admin.git
+git clone git@github.com:hbb520/element-angular-admin.git
 
 # 安装依赖，走你
 cd element-angular-admin
@@ -29,9 +29,9 @@ npm start
 
 | 包 | 版本 |
 | ------- | ------- |
-| `element-angular-admin` | 0.0.1-beta.1 | 
-| `element-angula` |  ^0.0.4-beta.2 |
-| `@angular` | ^4.3.6 |
+| `element-angular-admin` | ^0.1 | 
+| `element-angula` |  ^0.4.3 |
+| `@angular` | ^5 |
 | `@angular/cli` | 1.4.2 |
 
 **第三方类型(可选)**
@@ -51,8 +51,7 @@ npm start
 ## 特性
 
 + 基于 `element-angular`
-+ 响应式
-+ SCSS预编译
+
 
 ## 应用截图
 

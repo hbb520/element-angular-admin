@@ -1,62 +1,193 @@
-<el-breadcrumb separator="/">
-  <el-breadcrumb-item to="">首页</el-breadcrumb-item>
-  <el-breadcrumb-item to="">数据</el-breadcrumb-item>
-  <el-breadcrumb-item to="">表单</el-breadcrumb-item>
-</el-breadcrumb>
+<div class="breadcrumb-box">
+  <el-breadcrumb separator="/">
+    <el-breadcrumb-item to="">首页</el-breadcrumb-item>
+    <el-breadcrumb-item to="">数据</el-breadcrumb-item>
+    <el-breadcrumb-item to="">表单</el-breadcrumb-item>
+  </el-breadcrumb>
+</div>
 
 
-<el-card class="box-card">
-  <form>
-    <div el-row >
-      <div el-col [span]="2">
-        <label >input</label>
-      </div>
-      <div el-col [span]="6">
-        <el-input placeholder="请输入内容">
-        </el-input>
-      </div>
+<form>
+  <div el-row>
+    <div el-col [span]="2">
+      <label>input</label>
     </div>
-
-    <div style="margin: 20px 0;"></div>
-
-    <div el-row >
-      <div el-col [span]="2">
-        <label >textarea</label>
-      </div>
-      <div el-col [span]="6">
-        <el-input type="textarea"
-                  [autosize]="{ minRows: 2, maxRows: 4}"
-                  placeholder="自动调整高度 { minRows: 2, maxRows: 4 }"
-                  >
-        </el-input>
-      </div>
+    <div el-col [span]="6">
+      <el-input placeholder="请输入内容" [(model)]="inputModel">
+      </el-input>
+      {{inputModel}}
     </div>
+  </div>
 
-    <div style="margin: 20px 0;"></div>
+  <div style="margin: 20px 0;"></div>
 
-    <div el-row >
-      <div el-col [span]="2">
-        <label >select</label>
-      </div>
-      <div el-col [span]="6">
-        <el-select  placeholder="请选择" (modelChange)="handle($event)">
-          <el-option *ngFor="let item of [{value: '选项1',label: '黄金糕' },
+  <div el-row>
+    <div el-col [span]="2">
+      <label>textarea</label>
+    </div>
+    <div el-col [span]="6">
+      <el-input type="textarea"
+                [autosize]="{ minRows: 2, maxRows: 4}"
+                placeholder="自动调整高度 { minRows: 2, maxRows: 4 }"
+      >
+      </el-input>
+    </div>
+  </div>
+
+  <div style="margin: 20px 0;"></div>
+
+  <div el-row>
+    <div el-col [span]="2">
+      <label>select</label>
+    </div>
+    <div el-col [span]="6">
+      <el-select placeholder="请选择" (modelChange)="handle($event)" [(model)]="selectModel" [clearable]="true">
+        <el-option *ngFor="let item of [{value: '选项1',label: '黄金糕' },
       { value: '选项2', label: '双皮奶' },
       { disabled: true, value: '选项3', label: '蚵仔煎' },
       { value: '选项4', label: '龙须面' },
       { value: '选项5', label: '北京烤鸭' }]"
-                     [label]="item.label"
-                     [value]="item.value">
-          </el-option>
-        </el-select>
-      </div>
+                   [label]="item.label"
+                   [value]="item.value">
+        </el-option>
+      </el-select>
+      {{selectModel}}
     </div>
+  </div>
+
+  <div style="margin: 20px 0;"></div>
+
+  <div el-row>
+    <div el-col [span]="2">
+      <label>cascader</label>
+    </div>
+    <div el-col [span]="6">
+      <el-cascader [options]="disabledOptions" (modelChange)="handle($event)">
+      </el-cascader>
+
+    </div>
+  </div>
+  <div style="margin: 20px 0;"></div>
+
+  <div el-row>
+    <div el-col [span]="2">
+      <label>cascader</label>
+    </div>
+    <div el-col [span]="6">
+      <el-switch [(model)]="value1" (modelChange)="handle($event)">{{value1}}
+      </el-switch>
+
+    </div>
+  </div>
+  <div style="margin: 20px 0;"></div>
+
+  <div el-row>
+    <div el-col [span]="2">
+      <label>input-number</label>
+    </div>
+    <div el-col [span]="6">
+      <el-input-number [(model)]="inputNumberModel" [min]="1" [max]="10"
+                       (modelChange)="handle($event)"></el-input-number>
+
+      {{inputNumberModel}}
+    </div>
+  </div>
+
+  <div style="margin: 20px 0;"></div>
+
+  <div el-row>
+    <div el-col [span]="2">
+      <label>slider</label>
+    </div>
+    <div el-col [span]="6">
+
+      <el-slider (modelChange)="handle($event)">
+      </el-slider>
+
+    </div>
+  </div>
+  <div style="margin: 20px 0;"></div>
+
+  <div el-row>
+    <div el-col [span]="2">
+      <label>rate</label>
+    </div>
+    <div el-col [span]="6">
+
+      <el-rate [model]="4" (modelChange)="handle($event)"></el-rate>
+
+    </div>
+  </div>
+
+  <div style="margin: 20px 0;"></div>
+
+  <div el-row>
+    <div el-col [span]="2">
+      <label>upload</label>
+    </div>
+    <div el-col [span]="6">
+
+      <el-upload class="avatar-uploader"
+                 action="http://static.weiruict.com/uploadFile"
+                 list-type="picture" (success)="uploadSuccess($event)">
+        <ng-template #trigger>
+          <el-button size="small" type="primary">点击上传</el-button>
+        </ng-template>
+      </el-upload>
 
 
+    </div>
+  </div>
 
+  <div style="margin: 20px 0;"></div>
 
-  </form>
+  <div el-row>
+    <div el-col [span]="2">
+      <label>radio</label>
+    </div>
+    <div el-col [span]="6">
+      <el-radio-group [(model)]="radioModel">
+        <el-radio label="3">备选项</el-radio>
+        <el-radio label="6">备选项</el-radio>
+        <el-radio label="9">备选项</el-radio>
+      </el-radio-group>
+      {{radioModel}}
+    </div>
+  </div>
 
-</el-card>
+  <div style="margin: 20px 0;"></div>
+
+  <div el-row>
+    <div el-col [span]="2">
+      <label>checkbox</label>
+    </div>
+    <div el-col [span]="22">
+      <el-checkbox-group [(model)]="checkboxGroupModel" (modelChange)="handle($event)">
+        <el-checkbox label="1">复选框 1</el-checkbox>
+        <el-checkbox label="2">复选框 2</el-checkbox>
+        <el-checkbox label="3">复选框 3</el-checkbox>
+        <el-checkbox label="4">复选框 4</el-checkbox>
+        <el-checkbox label="5">复选框 5</el-checkbox>
+      </el-checkbox-group>
+      {{checkboxGroupModel}}
+    </div>
+  </div>
+
+  <div style="margin: 20px 0;"></div>
+
+  <div el-row>
+    <div el-col [span]="2">
+      <label>date-picker</label>
+    </div>
+    <div el-col [span]="22">
+      <el-date-picker (modelChange)="handle($event)"
+                      (clear-click)="clearClickHandle($event)">
+      </el-date-picker>
+
+      {{checkboxGroupModel}}
+    </div>
+  </div>
+</form>
+
 
 

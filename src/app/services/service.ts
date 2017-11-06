@@ -23,25 +23,6 @@ export class MyService {
       .then(this.extractJson);
   }
 
-  // 数据获取 根据 ID 获取单个
-  private getIdUrl = '/shop';
-
-  getId(id): Promise<any> {
-    let url = this.getIdUrl + '?id=' + id;
-    return this.ajax.get(url)
-      .toPromise()
-      .then(this.extractJson);
-  }
-
-  // 行业获取
-  private getIndustriesUrl = '/industries';
-
-  getIndustries(): Promise<any[]> {
-    return this.ajax.get(this.getIndustriesUrl)
-      .toPromise()
-      .then(this.extractJson);
-  }
-
   // 添加
   private addUrl = '/shop';
 
@@ -60,16 +41,6 @@ export class MyService {
       .then((res) => res);
   }
 
-  // 新增设计导购
-
-  private addUserUrl = '/shop/user';
-
-  addUser(shopId, params): Promise<any> {
-    let url = this.addUserUrl + '?shopId=' + shopId;
-    return this.ajax.post(url, params)
-      .toPromise()
-      .then((res) => res);
-  }
 
   // 查询单个用户详情
   private getUserUrl = '/users';
@@ -80,28 +51,6 @@ export class MyService {
       .toPromise()
       .then(this.extractJson);
   }
-
-  // 修改设计导购
-
-  private editUserUrl = '/users';
-
-  editUser(params): Promise<any> {
-    return this.ajax.put(this.editUserUrl, params)
-      .toPromise()
-      .then((res) => res);
-  }
-
-  //删除设计导购
-  private deleteUserUrl = '/users';
-
-  deleteUser(id): Promise<any> {
-    let url = `${this.deleteUserUrl}?ids=${id}`;
-    return this.ajax.delete(url)
-      .toPromise()
-      .then((res) => res);
-  }
-
-  // 启用设计导购
 
 
   //删除

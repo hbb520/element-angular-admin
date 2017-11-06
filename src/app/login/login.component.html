@@ -1,1 +1,25 @@
-登录
+<div class="login-div">
+  <form class="login-form">
+    <h1>
+      系统管理后台
+    </h1>
+
+    <div class="input-box">
+      <span class="fa fa-user"></span>
+      <input type="text" placeholder="请输入用户名" [(ngModel)]="nameModel" name="nameModel" (focus)="inputFocus()">
+    </div>
+
+    <div class="input-box">
+      <span class="fa fa-unlock-alt "></span>
+      <input type="password" placeholder="请输入密码" [(ngModel)]="psModel" name="psModel" (focus)="inputFocus()">
+    </div>
+
+    <div style="color: #FF4949;height: 33px">
+      {{loginerrortext}}
+    </div>
+    <button type="button" (click)="login()">{{btnLogin}}</button>
+    <p>默认账号:binbinadmin</p>
+    <p>默认密码:123456</p>
+    <p>数据用的是json,但是该写的都写了,差的就是一个正确的接口</p>
+  </form>
+</div>

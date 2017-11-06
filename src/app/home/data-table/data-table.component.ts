@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {pageAnimation} from '../../common/public-data';
 import {MyService} from '../../services/service';
-
+import {ElNotificationService, ElMessageService} from 'element-angular';
 @Component({
   selector: 'app-data-table',
   templateUrl: './data-table.component.html',
@@ -11,47 +11,47 @@ import {MyService} from '../../services/service';
   ]
 })
 export class DataTableComponent implements OnInit {
-  constructor(private  myService: MyService) {
+  constructor(private  myService: MyService,
+              private  notify: ElNotificationService,
+              private message: ElMessageService) {
+    this.message['success']('这是一条消息提示');
   }
 
   ngOnInit() {
-    this.getCitys();
-    this.get(1);
-    // setTimeout(() => {
-    //   this.data = [{
-    //     name: '水爷',
-    //     date: '2017-08-19',
-    //     address: '上海市普陀区金沙江路 1518 弄',
-    //   }, {
-    //     name: '水爷',
-    //     date: '2017-08-20',
-    //     address: '上海市普陀区金沙江路 1518 弄',
-    //   }, {
-    //     name: '水爷',
-    //     date: '2017-08-21',
-    //     address: '上海市普陀区金沙江路 1518 弄',
-    //   }, {
-    //     name: '水爷',
-    //     date: '2017-08-22',
-    //     address: '上海市普陀区金沙江路 1510 弄',
-    //   }];
-    // }, 2000);
+
+    // this.get(1);
+    setTimeout(() => {
+      this.selectModel = '6';
+    }, 2000);
+    setTimeout(() => {
+      this.selectModel = null;
+    }, 4000);
   }
 
   /************************* 定义********************************/
-  msgs: any[] = [];                                  //消息
   cars: any;                                             // get获取数据 {}
-  data: any[] = [];                                           //数据数组
+  data: any[] = [
+    {
+      "id": '5',
+      "createTime": '1460514819000',
+      "name": "好环境",
+      "logo": "http://pic33.nipic.com/20131007/13644136_140929204101_2.jpg"
+    }
+  ];                                           //数据数组
   totalPages: number = 1;                                //获取总页数
   totalCount: number = 0;                                //总条目数
-  gotoPage: number = 1;                                  //前往页数
-  input: string;
-  selectModel: string ;
+  inputModel: string;
+  selectModel: string;
+  datePpickerModel: string;
+  dialogVisible: boolean = false;
 
   /************************* 获取数据 ********************************/
   get(pageNo) {
     let params = {
       'pageNo': pageNo,
+      'input': this.inputModel,
+      'datePpicker': this.datePpickerModel,
+      'select': this.selectModel
     };
     this.myService.get(params)
       .then(res => {
@@ -60,15 +60,18 @@ export class DataTableComponent implements OnInit {
             this.data = [];
             let data = [];
             for (let i = 0; i < this.cars.data.length; i++) {
+              let newDate = new Date();
+              newDate.setTime(this.cars.data[i].createTime);
+              this.cars.data[i].createTime = newDate.getFullYear() + '-' + (newDate.getMonth() + 1) + '-' + newDate.getDate() + ' ' + newDate.getHours() + ':' + newDate.getMinutes();
               data.push({
                 id: this.cars.data[i].id.toString(),
                 name: this.cars.data[i].name.toString(),
-                createTime: this.cars.data[i].createTime.toString()
+                createTime: this.cars.data[i].createTime.toString(),
+                logo: this.cars.data[i].logo.toString()
               });
             }
             this.data = data;
-            this.selectModel = '6';
-            console.log(this.data);
+            console.log(this.data)
             if (this.data.length == 0) {
               this.data = [];
             }                                                                                   //没有数据时跳到第一页
@@ -82,19 +85,9 @@ export class DataTableComponent implements OnInit {
   }
 
   /************************* 分页函数 ********************************/
-  // paginate(event) {
-  //   const num = event.page + 1;
-  //   this.gotoPage = num;
-  //   this.get(num);
-  // }
-
-  /************************* 前往页数 ********************************/
-  // blurGotoPage() {
-  //   if (this.gotoPage > this.totalPages) {
-  //     this.gotoPage = this.totalPages;
-  //   }
-  //   this.get(this.gotoPage);
-  // }
+  paginateChange(event) {
+    this.get(event);
+  }
 
 
   /************************* 添加 ********************************/
@@ -196,94 +189,10 @@ export class DataTableComponent implements OnInit {
   //   this.get(this.first + 1);
   // }
 
-  /************************* 省级联动 ********************************/
-  citys: any;                                             //省级 数据
-  city1Array: any = [];
-  city1NgModel: any;
-  city2Array: any = [];
-  city2NgModel: any;
-  city2Disabled: boolean = true;
-  city3Array: any = [];
-  city3NgModel: any;
-  city3Disabled: boolean = true;
-  //获取省市区县数据
-  getCitys() {
-    this.myService.getCitys()
-      .then(citys => {
-          this.citys = citys;
-        }, res => console.log(res)
-      )
-      .then(
-        () => {
-          for (let i in  this.citys) {
-            if (parseInt(i) % 10000 === 0) {
-              this.city1Array.push({
-                label: this.citys[i],
-                value: i
-              });
-            }
 
-          }
-        }
-      );
-  }
-
-  //省级 或 直辖市 级 下拉框change 事件
-  city1onChange() {
-    this.city2Array = [];
-    for (let i in  this.citys) {
-      if (parseInt(i.substring(0, 2)) == this.city1NgModel.substring(0, 2)) {
-        if (parseInt(i) % 100 === 0 && parseInt(i) % 10000 != 0) {
-          this.city2Array.push({
-            label: this.citys[i],
-            value: i
-          });
-        }
-        if (i.substring(0, 2) == '11' || i.substring(0, 2) == '12' || i.substring(0, 2) == '82' || i.substring(0, 2) == '81'
-          || i.substring(0, 2) == '50' || i.substring(0, 2) == '31'
-        ) {
-          if (parseInt(i) % 10000 != 0) {
-            this.city2Array.push({
-              label: this.citys[i],
-              value: i
-            });
-          }
-        }
-      }
-    }
-    if (this.city2Array.length == 0) {
-      this.city2Disabled = true;
-      this.city3Disabled = true;
-      this.city3Array = [];
-    } else {
-      this.city2Disabled = false;
-      this.city3Disabled = true;
-      this.city3Array = [];
-    }
-  }
-
-  //第二个个下拉框change 事件
-  city2onChange() {
-    this.city3Array = [];
-    for (let i in  this.citys) {
-      if (parseInt(i.substring(0, 4)) == this.city2NgModel / 100) {
-        if (parseInt(i) % 100 != 0) {
-          this.city3Array.push({
-            label: this.citys[i],
-            value: i
-          });
-        }
-      }
-    }
-    if (this.city3Array.length == 0) {
-      this.city3Disabled = true;
-    } else {
-      this.city3Disabled = false;
-    }
-  }
-
-  handle(e:any) {
+  handle(e: any) {
     console.log(e);
+
   }
 
 }
