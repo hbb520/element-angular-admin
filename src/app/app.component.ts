@@ -38,7 +38,6 @@ export class AppComponent implements OnInit {
   }
 
   constructor(private router: Router, private titleService: Title, public progressService: NgProgressService) {
-
   };
 
   routerList = homeRoutes;

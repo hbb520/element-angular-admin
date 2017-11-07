@@ -31,7 +31,7 @@
     "chart.js ": "*",
     "@types/js-base64": "^2.1.5",
     "ngx-uploader": "^3.3.11",
-    "element-angular":"^0.4.2"
+    "element-angular":"^0.4.5"
   },
   "devDependencies": {
     "@angular/cli": "1.4.2",

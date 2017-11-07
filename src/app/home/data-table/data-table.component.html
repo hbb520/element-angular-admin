@@ -58,29 +58,29 @@
     <el-table-column model-key="name" label="名称" width="140">
 
     </el-table-column>
-    <el-table-column model-key="createTime" label="创建时间">
-
-    </el-table-column>
-    <el-table-column model-key="logo" label="logo">
+    <el-table-column model-key="createTime" label="创建时间" width="140">
 
     </el-table-column>
 
-    <el-table-column model-key="logo" label="logo">
-      <ng-template #slot1 let-scope="scope">
-        {{scope.rowData.logo}}
-      </ng-template>
-    </el-table-column>
-    <el-table-column model-key="createTime" label="创建时间">
+    <!--<el-table-column model-key="logo" label="创建时间" width="140"></el-table-column>-->
+    <el-table-column model-key="logo" label="logo" width="140">
       <ng-template #slot let-scope="scope">
-        {{scope.rowData.createTime}}
+        {{scope?.rowData?.logo}}
       </ng-template>
     </el-table-column>
-    <!--<el-table-column label="操作" width="200">-->
-    <!--<ng-template #slot let-scope="scope">-->
-    <!--<el-button type="primary" size="mini" icon="edit" (click)="handle(scope.rowData)"></el-button>-->
-    <!--<el-button type="danger" size="mini" icon="delete" (click)="handle(scope.rowData)"></el-button>-->
+
+    <!--<el-table-column model-key="createTime" label="createTime" width="140">-->
+    <!--<ng-template #slot1 let-scope="scope">-->
+    <!--111-->
     <!--</ng-template>-->
     <!--</el-table-column>-->
+    <el-table-column label="操作" width="200">
+      <ng-template #slot let-scope="scope">
+        <el-button type="primary" size="mini" icon="edit" (click)="handle(scope.rowData)"></el-button>
+        <el-button type="danger" size="mini" icon="delete" (click)="handle(scope.rowData)"></el-button>
+      </ng-template>
+    </el-table-column>
+
   </el-table>
 
 

@@ -30,9 +30,9 @@ npm start
 | 包 | 版本 |
 | ------- | ------- |
 | `element-angular-admin` | ^0.1 | 
-| `element-angula` |  ^0.4.3 |
+| `element-angula` |  ^0.4.5 |
 | `@angular` | ^5 |
-| `@angular/cli` | 1.4.2 |
+| `@angular/cli` | 1.5 |
 
 **第三方类型(可选)**
 
